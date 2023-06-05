@@ -13,11 +13,6 @@ export default function Baloons() {
                         <p>Pat paaat...</p>
                     </div>
                 </section>
-                <section className="message -right">
-                    <div className="nes-balloon from-right float-right">
-                        <p>Pat paaat...</p>
-                    </div>
-                </section>
             </section>
         </section>
     </>)
