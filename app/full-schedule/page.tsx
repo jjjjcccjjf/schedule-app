@@ -3,6 +3,7 @@ import 'server-only'
 import Link from 'next/link';
 import moment from 'moment';
 import { schedule } from '@prisma/client';
+import Nav from '@/components/Nav';
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
@@ -22,10 +23,11 @@ export default async function Page() {
     const fullSchedule = await getFullSchedule()
 
     return (
-        <div className="container border border-red-300 max-w-xl h-screen mx-auto bg-slate-50 px-6 py-12">
+        <div className="container bg-gray-200 max-w-xl mx-auto px-6 py-6">
+            <Nav></Nav>
             <main className="grid grid-flow-row gap-6">
                 <div className="nes-table-responsive">
-                    <table className="nes-table is-bordered is-centered">
+                    <table className="nes-table is-bordered is-centered text-xs">
                         <thead>
                             <tr>
                                 <th>Subject</th>

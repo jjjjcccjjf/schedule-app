@@ -7,14 +7,13 @@ import ContainerFreeTime from '@/components/ContainerFreeTime';
 import Baloons from '@/components/Baloons';
 import { schedule } from '@prisma/client'
 import Link from 'next/link'
+import Nav from '@/components/Nav';
 
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-async function checkHaveClass() {
+async function getClassNow(): Promise<schedule> {
   const dateNow = moment().add(8, 'h').toISOString()
-
-  console.log(dateNow);
 
   const haveClass = await prisma.schedule.findFirst({
     where: {
@@ -30,30 +29,47 @@ async function checkHaveClass() {
   return haveClass
 }
 
+
+async function checKHaveClass(): Promise<boolean> {
+  const dateNow = moment().add(8, 'h').toISOString()
+
+  const haveClass = await prisma.schedule.findFirst({
+    where: {
+      from_date: {
+        lte: dateNow
+      },
+      to_date: {
+        gte: dateNow
+      }
+    }
+  })
+
+  return haveClass !== null
+}
+
 export default async function Page() {
 
-  let haveClass: schedule | boolean = false;
-  try {
-    haveClass = await checkHaveClass()
-  } catch (error) {
-    console.error(error)
-  } finally {
-    await prisma.$disconnect()
-  }
+  const haveClass = await checKHaveClass()
+    .then(res => res)
+    .catch((error) => console.error(error))
+    .finally(async () => await prisma.$disconnect())
 
-  console.log(haveClass)
+  const classNow = await getClassNow()
+    .then(res => res)
+    .catch((error) => console.error(error))
+    .finally(async () => await prisma.$disconnect())
 
   return (
-    <div className="container border border-red-300 max-w-xl h-screen mx-auto bg-slate-50 px-6 py-12">
+    <div className="container bg-gray-200 max-w-xl mx-auto px-6 py-6">
+      <Nav></Nav>
       <main className="grid grid-flow-row gap-6">
-        <TimeCard></TimeCard>
         {
           haveClass ?
-            <ContainerHaveClass classDetails={haveClass}></ContainerHaveClass> :
+            <ContainerHaveClass classDetails={classNow as schedule}></ContainerHaveClass> :
             <ContainerFreeTime></ContainerFreeTime>
         }
         <Link className="nes-btn" href="/full-schedule">View Full Schedule</Link>
-        {/* <Baloons></Baloons> */}
+        <Baloons></Baloons>
       </main>
     </div>
   )

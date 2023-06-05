@@ -15,13 +15,13 @@ function formatDate(date: Date): string {
     const formattedMinutes: string = minutes.toString().padStart(2, '0');
     const formattedSeconds: string = seconds.toString().padStart(2, '0');
 
-    const formattedDate: string = `${day} ${formattedHours}:${formattedMinutes}:${formattedSeconds}${ampm}`;
+    const formattedDate: string = `${day} ${formattedHours}:${formattedMinutes}${ampm}`;
 
     return formattedDate;
 }
 
 export default function TimeCard() {
-    const [time, setTime] = useState("Now loading...")
+    const [time, setTime] = useState("Loading...")
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -36,9 +36,10 @@ export default function TimeCard() {
 
     return (
         <>
-            <div className="nes-container is-rounded text-center">
-                <p className="text-2xl">{time}</p>
-            </div>
+            {/* <div className="nes-container bg-white is-rounded text-center h-12 flex justify-center items-center">
+                <p className="">{time}</p>
+            </div> */}
+            <p className="contents text-sm">{time}</p>
         </>
     )
 }
