@@ -68,7 +68,7 @@ export default async function Page() {
             <ContainerHaveClass classDetails={classNow as schedule}></ContainerHaveClass> :
             <ContainerFreeTime></ContainerFreeTime>
         }
-        <Link className="nes-btn" href="/full-schedule">View Full Schedule</Link>
+        <Link className="nes-btn bg-white" href="/full-schedule">View Full Schedule</Link>
         <Baloons></Baloons>
       </main>
     </div>
