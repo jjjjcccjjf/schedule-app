@@ -22,7 +22,7 @@ export default function ContainerHaveClass({ classDetails }: ClassProps) {
 
     return (
         <>
-            <div className="nes-container with-title bg-white  ">
+            <div className="nes-container with-title bg-white dark:is-dark">
                 <p className="title">BSBA-HRM 3-4N</p>
                 <p className="text-center"><span className="nes-text is-error font-bold">YOU HAVE A CLASS!!!</span></p>
                 <p>Your subject is: <span className="nes-text is-error">{classDetails.subject_name}</span></p>
