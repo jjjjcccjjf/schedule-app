@@ -6,16 +6,16 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  provider          = "postgresql"
+  url               = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl         = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
   shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING") // used for migrations
 }
 
 model schedule {
-  id Int @id @default(autoincrement())
-  from_date DateTime
-  to_date DateTime
-  room_number String
+  id           Int      @id @default(autoincrement())
+  from_date    DateTime
+  to_date      DateTime
+  room_number  String
   subject_name String
 }
