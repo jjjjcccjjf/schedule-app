@@ -12,6 +12,8 @@ import Nav from '@/components/Nav';
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
+export const revalidate = 60
+
 async function getClassNow(): Promise<schedule> {
   const dateNow = moment().add(8, 'h').toISOString()
 
