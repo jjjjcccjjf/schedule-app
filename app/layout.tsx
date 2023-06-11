@@ -1,6 +1,7 @@
 import './globals.css'
 import '../node_modules/nes.css/css/nes.min.css'
 import { Press_Start_2P } from 'next/font/google'
+import Nav from '@/components/Nav'
 
 const pressStart2p = Press_Start_2P({ subsets: ['latin'], weight: '400' })
 
@@ -16,7 +17,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={pressStart2p.className}>{children}</body>
+      <body className={pressStart2p.className}>
+        <div className="container bg-gray-200 max-w-xl mx-auto px-6 py-6">
+          <Nav></Nav>
+          {children}
+        </div>
+      </body>
     </html>
   )
 }

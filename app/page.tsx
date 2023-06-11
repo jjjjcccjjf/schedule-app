@@ -12,8 +12,8 @@ import Nav from '@/components/Nav';
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-export const dynamic = 'force-dynamic'
-// export const revalidate = 0
+// export const dynamic = 'force-dynamic'
+export const revalidate = 60
 
 async function getClassNow(): Promise<schedule> {
   const dateNow = moment().add(8, 'h').toISOString()
@@ -63,17 +63,14 @@ export default async function Page() {
     .finally(async () => await prisma.$disconnect())
 
   return (
-    <div className="container bg-gray-200 max-w-xl mx-auto px-6 py-6">
-      <Nav></Nav>
-      <main className="grid grid-flow-row gap-6">
-        {
-          haveClass ?
-            <ContainerHaveClass classDetails={classNow as schedule}></ContainerHaveClass> :
-            <ContainerFreeTime></ContainerFreeTime>
-        }
-        <Link className="nes-btn bg-white" href="/full-schedule">View Full Schedule</Link>
-        <Baloons></Baloons>
-      </main>
-    </div>
+    <main className="grid grid-flow-row gap-6">
+      {
+        haveClass ?
+          <ContainerHaveClass classDetails={classNow as schedule}></ContainerHaveClass> :
+          <ContainerFreeTime></ContainerFreeTime>
+      }
+      <Link className="nes-btn bg-white" href="/full-schedule">View Full Schedule</Link>
+      <Baloons></Baloons>
+    </main>
   )
 }
