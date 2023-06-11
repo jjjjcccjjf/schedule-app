@@ -52,15 +52,17 @@ async function checKHaveClass(): Promise<boolean> {
 
 export default async function Page() {
 
-  const haveClass = await checKHaveClass()
+  const haveClassData = checKHaveClass()
     .then(res => res)
     .catch((error) => console.error(error))
     .finally(async () => await prisma.$disconnect())
 
-  const classNow = await getClassNow()
+  const classNowData = getClassNow()
     .then(res => res)
     .catch((error) => console.error(error))
     .finally(async () => await prisma.$disconnect())
+
+  const [haveClass, classNow] = await Promise.all([haveClassData, classNowData])
 
   return (
     <main className="grid grid-flow-row gap-6">
