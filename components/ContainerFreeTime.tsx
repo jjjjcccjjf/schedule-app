@@ -38,7 +38,7 @@ export default async function ContainerFreeTime() {
 
     return (
         <>
-            <div className="nes-container with-title bg-white">
+            <div className="nes-container with-title is-dark">
                 <p className="title">BSBA-HRM 3-4N</p>
                 <p className="text-center"><span className="nes-text uppercase is-primary font-bold italic">Free Time!</span></p>
                 {

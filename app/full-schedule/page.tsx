@@ -25,7 +25,7 @@ export default async function Page() {
     return (
         <main className="grid grid-flow-row gap-6">
             <div className="nes-table-responsive">
-                <table className="nes-table is-bordered is-centered text-[0.40rem]">
+                <table className="nes-table is-bordered is-dark is-centered text-[0.40rem]">
                     <thead>
                         <tr>
                             <th>Subject</th>

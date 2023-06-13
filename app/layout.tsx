@@ -16,9 +16,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className={pressStart2p.className}>
-        <div className="container bg-gray-200 max-w-xl mx-auto px-6 py-6">
+    <html lang="en" className="bg-black">
+      <body className={`${pressStart2p.className} bg-black`}>
+        <div className="container bg-[#222529] max-w-xl mx-auto px-6 py-6">
           <Nav></Nav>
           {children}
         </div>

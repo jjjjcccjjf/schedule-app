@@ -65,7 +65,7 @@ export default async function Page() {
   const [haveClass, classNow] = await Promise.all([haveClassData, classNowData])
 
   return (
-    <main className="grid grid-flow-row gap-6">
+    <main className="grid grid-flow-row gap-6 bg-[#222529]">
       {
         haveClass ?
           <ContainerHaveClass classDetails={classNow as schedule}></ContainerHaveClass> :
